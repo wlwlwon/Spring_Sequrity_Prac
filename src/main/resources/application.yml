@@ -14,7 +14,6 @@ spring:
     username: cos
     password: cos1234
 
-
   jpa:
     hibernate:
       ddl-auto: create #create update none
