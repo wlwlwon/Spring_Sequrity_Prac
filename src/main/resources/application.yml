@@ -16,7 +16,20 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create #create update none
+      ddl-auto: update #create update none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
+
+
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 3629603700-4p2ga9q7dov6m4luhb91bjia3if5a05f.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+            - email
+            - profile
