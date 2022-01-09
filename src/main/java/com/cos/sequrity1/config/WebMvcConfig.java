@@ -1,4 +1,4 @@
-package com.cos.config;
+package com.cos.sequrity1.config;
 
 import org.springframework.boot.web.servlet.view.MustacheViewResolver;
 import org.springframework.context.annotation.Configuration;
