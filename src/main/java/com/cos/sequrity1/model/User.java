@@ -1,6 +1,9 @@
 package com.cos.sequrity1.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
@@ -9,8 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
-@Entity
+@Builder
 @Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id // primary key
@@ -20,6 +26,10 @@ public class User {
     private String password;
     private String email;
     private String role; //ROLE_USER, ROLE_ADMIN
+
+    private String provider;
+    private String providerId;
+
     @CreationTimestamp
     private Timestamp createDate;
 }
