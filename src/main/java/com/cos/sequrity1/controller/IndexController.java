@@ -1,15 +1,22 @@
 package com.cos.sequrity1.controller;
 
+import com.cos.sequrity1.config.auth.PrincipalDetails;
 import com.cos.sequrity1.model.User;
 import com.cos.sequrity1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Iterator;
 
 @Controller
 public class IndexController {
@@ -20,6 +27,14 @@ public class IndexController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @GetMapping("/test/login")
+    public @ResponseBody String loginTest(Authentication authentication ,@AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println("/test/login-------------------==");
+
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        System.out.println("authentication = " + principalDetails.getUser());
+        return "세션 정보 확인하기";
+    }
     @GetMapping({ "", "/" })
     public String index() {
         //머스테치 기본 폴더 src/main/resources/
@@ -28,8 +43,17 @@ public class IndexController {
     }
 
     @GetMapping("/user")
-    public @ResponseBody String user() {
-        return "user";
+    public @ResponseBody String user(@AuthenticationPrincipal PrincipalDetails principal) {
+        System.out.println("Principal : " + principal);
+        System.out.println("OAuth2 : "+principal.getUser().getProvider());
+        // iterator 순차 출력 해보기
+        Iterator<? extends GrantedAuthority> iter = principal.getAuthorities().iterator();
+        while (iter.hasNext()) {
+            GrantedAuthority auth = iter.next();
+            System.out.println(auth.getAuthority());
+        }
+
+        return "유저 페이지입니다.";
     }
 
     @GetMapping("/admin")
