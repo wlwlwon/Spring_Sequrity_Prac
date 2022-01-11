@@ -28,23 +28,23 @@ spring:
       client:
         registration:
           google:
-            client-id: 3629603700-4p2ga9q7dov6m4luhb91bjia3if5a05f.apps.googleusercontent.com
-            client-secret: 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
+            client-id: #
+            client-secret:#
             scope:
             - email
             - profile
 
           facebook:
-            client-id: 341458270893837
-            client-secret: 42379a4815c1917ba156d195847c86cd
+            client-id: #
+            client-secret: #
             scope:
               - email
               - public_profile
 
 
           naver:
-            client-id: f6oJqWXOvlQKBrMxnIR3
-            client-secret: 2jCstfJEIp
+            client-id: #
+            client-secret: #
             scope:
               - name
               - email
